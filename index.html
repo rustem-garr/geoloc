@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Geoloc</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        background-color: darkcyan;
+        color:white;
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      #demo{
+        text-align:center;
+        position:absolute;
+        top:50%;
+        left:50%;
+        transform: translate(-50%, -50%);
+        font-size:16px;
+      }
+      #btn{
+        border:none;
+        padding:12px 16px;
+        font-size:16px;
+        background-color: #555555;
+        color:white;
+        text-align:center;
+      }
+    </style>
+  </head>
+  <body onload="getLoc()">
+    <div id="demo">
+      <h1>Geolocation API</h2>
+      <p id="p1">Click and get your coordinates</p>
+      <p id="loc"></p>
+      <a href="" id="map" style="display: none; margin: 5px; color:white" target="_blank">Location on Google Map</a>
+      <!-- <button type="button" id="btn" onclick="geoLoc()">My Geolocation</button> -->
+    </div>
+  </body>
+  <script>
+    function getLoc() {
+  let txt = document.getElementById("loc");
+  if (navigator.geolocation) {
+    navigator.geolocation.watchPosition(showPosition);
+  } else {
+    txt.innerHTML = "Browser does not support geolocation";
+  }
+
+  function showPosition(position) {
+    txt.innerHTML =
+      "Your coordinates: <br>" +
+      position.coords.latitude +
+      "," +
+      position.coords.longitude;
+    document.getElementById("p1").style.display = "none";
+    document.getElementById("map").style.display = "block";
+    document.getElementById("map").href =
+      "https://www.google.com/maps/place/" +
+      position.coords.latitude +
+      "," +
+      position.coords.longitude;
+    document.getElementById("btn").style.display = "none";    
+   
+    }  
+}
+  </script>
+</html>
