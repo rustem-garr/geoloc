@@ -1,2 +1,2 @@
 # Geolocation API
-https://rustem-tkm.github.io/geoloc/
+https://rustem-garr.github.io/geoloc/
